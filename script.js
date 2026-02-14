@@ -251,7 +251,7 @@ function initBoxChoice() {
 }
 
 function openGiftBox(boxElement) {
-    stopMusic();
+    // Don't stop music - keep playing
     
     if (typeof gsap !== 'undefined') {
         gsap.to(boxElement, {
@@ -272,7 +272,13 @@ function showVideo() {
     const video = document.getElementById('gift-video');
     
     video.src = CONFIG.giftVideo;
+    video.muted = false; // Make sure video has sound
     container.style.display = 'flex';
+    
+    // Lower background music volume during video
+    if (backgroundMusic) {
+        backgroundMusic.volume = 0.2;
+    }
     
     // Show close button
     const closeBtn = document.createElement('button');
@@ -282,7 +288,12 @@ function showVideo() {
         video.pause();
         container.style.display = 'none';
         closeBtn.remove();
-        startMusic();
+        
+        // Restore music volume
+        if (backgroundMusic) {
+            backgroundMusic.volume = 0.7;
+        }
+        
         transitionScene('choose-box-screen', 'force-box-message');
         setTimeout(function() {
             transitionScene('force-box-message', 'my-box-screen');
@@ -301,7 +312,11 @@ function showVideo() {
     video.play();
     
     video.onended = function() {
-        startMusic();
+        // Restore music volume
+        if (backgroundMusic) {
+            backgroundMusic.volume = 0.7;
+        }
+        
         container.style.display = 'none';
         closeBtn.remove();
         transitionScene('choose-box-screen', 'force-box-message');
