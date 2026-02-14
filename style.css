@@ -15,10 +15,10 @@
 body {
     font-family: 'Amiri', 'Cormorant Garamond', serif;
     overflow-x: hidden;
-    overflow-y: auto;
     background: #000;
     color: #fff;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .scene {
@@ -26,17 +26,18 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: none;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 20px 0;
+    padding: 40px 20px;
 }
 
 .scene.active {
     display: flex;
+    flex-direction: column;
 }
 
 /* ==================== INTRO ==================== */
@@ -470,6 +471,7 @@ body {
     width: 100%;
     max-width: 1000px;
     padding: 20px;
+    margin: auto;
 }
 
 .game-title {
@@ -704,6 +706,7 @@ body {
     z-index: 10;
     width: 100%;
     padding: 20px;
+    margin: auto;
 }
 
 .boxes-title {
@@ -812,6 +815,7 @@ body {
     max-width: 800px;
     padding: 40px 20px;
     width: 100%;
+    margin: auto;
 }
 
 .proposal-character {
@@ -910,6 +914,7 @@ body {
     z-index: 10;
     width: 100%;
     padding: 20px;
+    margin: auto;
 }
 
 .contact-title {
@@ -985,6 +990,11 @@ body {
 
 /* ==================== MOBILE RESPONSIVE ==================== */
 @media (max-width: 768px) {
+    .scene {
+        padding: 20px 10px;
+        justify-content: flex-start;
+    }
+    
     .gift-boxes {
         gap: 40px;
         flex-direction: column;
@@ -1042,11 +1052,15 @@ body {
         font-size: clamp(1.2rem, 3vw, 1.8rem);
         padding: 0 20px;
     }
+    
+    .game-stage {
+        padding: 10px;
+    }
 }
 
 @media (max-width: 480px) {
     .scene {
-        padding: 10px 0;
+        padding: 10px 5px;
     }
     
     .message-card {
