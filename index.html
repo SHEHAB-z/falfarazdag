@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Intro -->
+    <section id="intro" class="scene active">
+        <div class="particles-bg"></div>
+        <div class="intro-content">
+            <div class="producer-text">
+                <span class="produced-by">PRODUCED BY</span>
+                <h1 class="producer-name">SHEHAB ELDIN</h1>
+                <div class="light-beam"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buttons Screen -->
+    <section id="buttons-screen" class="scene">
+        <div class="desert-scene">
+            <div class="sand-dunes"></div>
+            <div class="floating-particles"></div>
+        </div>
+        <div class="buttons-wrapper">
+            <button id="next-btn" class="cinematic-btn next">
+                <span class="btn-text">NEXT</span>
+            </button>
+            <button id="exit-btn" class="cinematic-btn exit">
+                <span class="btn-text">EXIT</span>
+            </button>
+        </div>
+        <div id="warning-overlay" class="warning-overlay">
+            <div class="warning-content"></div>
+        </div>
+    </section>
+
+    <!-- Warning Message -->
+    <section id="warning-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="cinematic-message">
+            <h1 class="dramatic-text">بس كان تطلعي🔪!</h1>
+        </div>
+    </section>
+
+    <!-- Main Message -->
+    <section id="main-message-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+            <div class="bokeh-lights"></div>
+        </div>
+        <div class="message-card">
+            <div class="card-glow"></div>
+            <p class="romantic-message">
+                اجمل لحظات حياتي كانت اللحظه الاتعرفت عليك فيها بغض النظر عن الطريقه الاتعرفنا بيها والحاجه الجمعتنا ح تفضلي اجمل واسعد لحظات حياتي الحصلت اليوم العرفتك فيهو كانت بداية عمر جديد لي وكل دقيقه كنت بتكلم فيها كنت بتمنى دايما انو ربنا يديما هي ممكن تكون دقيقه بس بتعوض عن سنين كتيره راحت وانا بتمنى ليك دايما تكوني مبسوطه في حياتك وناجحه ومتفوقه واهلك فرحانين بيك وربنا مايحرمك منهم وما يحرمهم منك ويديم المحبه بينكم يا رب وبتمنى زي ما كنتي سبب جزء كبير من سعادتي وفرحتي اكون سبب جزء حتى لو بسيط بس من سعادتك وقدر ال الله يديني ليهو اقدمه ليك يا ست الكل في الكل❤️💕
+            </p>
+            <button id="message-next-btn" class="cinematic-btn next" style="margin-top: 40px;">
+                <span class="btn-text">NEXT</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Game Intro -->
+    <section id="game-intro-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="message-card">
+            <h2 class="game-intro-text">
+                اذا انتي فزتي علي في اللعبه تختاري واحد من الصناديق<br>
+                واذا انا فزت حيظهر ليك صندوقي
+            </h2>
+        </div>
+    </section>
+
+    <!-- Game Screen -->
+    <section id="game-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="game-stage">
+            <h2 class="game-title">اختاري بحكمة</h2>
+            <div class="choices-grid">
+                <div class="choice-card" data-choice="rock">
+                    <div class="choice-icon">✊</div>
+                    <div class="choice-label">حجر</div>
+                </div>
+                <div class="choice-card" data-choice="paper">
+                    <div class="choice-icon">✋</div>
+                    <div class="choice-label">ورقة</div>
+                </div>
+                <div class="choice-card" data-choice="scissors">
+                    <div class="choice-icon">✌️</div>
+                    <div class="choice-label">مقص</div>
+                </div>
+            </div>
+            <div id="game-result" class="game-result"></div>
+        </div>
+    </section>
+
+    <!-- Player Win - Choose Box -->
+    <section id="choose-box-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="boxes-container">
+            <h2 class="boxes-title">اختاري صندوقك! 🎁</h2>
+            <div class="gift-boxes">
+                <div class="gift-box" data-box="1">🎁</div>
+                <div class="gift-box" data-box="2">🎁</div>
+                <div class="gift-box" data-box="3">🎁</div>
+            </div>
+        </div>
+        <div id="video-container" class="video-container">
+            <video id="gift-video" class="gift-video" controls></video>
+        </div>
+    </section>
+
+    <!-- Player Lose Message -->
+    <section id="lose-message-screen" class="scene">
+        <div class="romantic-atmosphere dark"></div>
+        <div class="message-card">
+            <h2 class="dramatic-text">كده كده كان حيظهر ليك صندوقي</h2>
+        </div>
+    </section>
+
+    <!-- Force My Box Message -->
+    <section id="force-box-message" class="scene">
+        <div class="romantic-atmosphere dark"></div>
+        <div class="message-card">
+            <h2 class="dramatic-text">برضو حيظهر ليك الصندوق بتاعي غصبا عنك🙂</h2>
+        </div>
+    </section>
+
+    <!-- My Box Screen -->
+    <section id="my-box-screen" class="scene">
+        <div class="romantic-atmosphere"></div>
+        <div class="my-box-container">
+            <div id="special-box" class="special-box">📦</div>
+        </div>
+    </section>
+
+    <!-- Proposal Screen -->
+    <section id="proposal-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+            <div class="bokeh-lights"></div>
+        </div>
+        <div class="proposal-container">
+            <img id="proposal-character" class="proposal-character" src="" alt="💍">
+            <h2 class="proposal-text">فطومه هل انتي موافقه بكامل قواك العقليه<br>بي اني اكون شريكك؟🤍</h2>
+            <div class="proposal-buttons">
+                <button id="yes-btn" class="proposal-btn yes">موافقة</button>
+                <button id="no-btn" class="proposal-btn no">ما موافقة</button>
+            </div>
+        </div>
+        <div id="video-overlay" class="video-overlay">
+            <video id="no-video" class="no-video" style="display:none;"></video>
+        </div>
+    </section>
+
+    <!-- Contact Choice -->
+    <section id="contact-screen" class="scene">
+        <div class="romantic-atmosphere"></div>
+        <div class="contact-container">
+            <h2 class="contact-title">اختاري التطبيق</h2>
+            <div class="contact-buttons">
+                <button id="whatsapp-btn" class="contact-btn whatsapp">
+                    <span class="contact-icon">📱</span>
+                    <span>WhatsApp</span>
+                </button>
+                <button id="telegram-btn" class="contact-btn telegram">
+                    <span class="contact-icon">✈️</span>
+                    <span>Telegram</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
