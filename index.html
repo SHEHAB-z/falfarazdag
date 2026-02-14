@@ -1,475 +1,189 @@
-// ========== CONFIG ==========
-const CONFIG = {
-    musicFile: 'music.mp3',
-    giftVideo: 'gift.mp4', // حط ملف الفيديو هنا
-    noGif: 'no.gif', // GIF أو صورة لما تضغط "ما موافقة" 3 مرات
-    proposalImage: 'proposal.png', // صورة الشخص اللي بيطلب الزواج
-    phoneNumber: '201551406032', // رقم الواتساب والتيليجرام
-    warningMessages: [
-        { text: 'اوعا تفكري 🔪', image: 'sticker1.png' },
-        { text: 'انا ما بهزر 🙂', image: 'sticker2.png' },
-        { text: 'بطلع ليك بره الشاشه بعده 🙂🔪', image: 'sticker3.png' }
-    ]
-};
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Intro -->
+    <section id="intro" class="scene active">
+        <div class="particles-bg"></div>
+        <div class="intro-content">
+            <div class="producer-text">
+                <span class="produced-by">PRODUCED BY</span>
+                <h1 class="producer-name">SHEHAB ELDIN</h1>
+                <div class="light-beam"></div>
+            </div>
+        </div>
+    </section>
 
-// ========== GLOBALS ==========
-let exitAttempts = 0;
-let noAttempts = 0;
-let backgroundMusic = null;
+    <!-- Buttons Screen -->
+    <section id="buttons-screen" class="scene">
+        <div class="desert-scene">
+            <div class="sand-dunes"></div>
+            <div class="floating-particles"></div>
+        </div>
+        <div class="buttons-wrapper">
+            <button id="next-btn" class="cinematic-btn next">
+                <span class="btn-text">NEXT</span>
+            </button>
+            <button id="exit-btn" class="cinematic-btn exit">
+                <span class="btn-text">EXIT</span>
+            </button>
+        </div>
+        <div id="warning-overlay" class="warning-overlay">
+            <div class="warning-content"></div>
+        </div>
+    </section>
 
-// ========== START ==========
-window.onload = function() {
-    console.log('🎬 Starting...');
-    prepareMusic();
-    createFloatingParticles();
-    
-    setTimeout(function() {
-        transitionScene('intro', 'buttons-screen');
-        initButtons();
-    }, 5000);
-};
+    <!-- Warning Message -->
+    <section id="warning-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="cinematic-message">
+            <h1 class="dramatic-text">بس كان تطلعي🔪!</h1>
+        </div>
+    </section>
 
-// ========== MUSIC ==========
-function prepareMusic() {
-    backgroundMusic = new Audio(CONFIG.musicFile);
-    backgroundMusic.loop = true;
-    backgroundMusic.volume = 0.7;
-}
+    <!-- Main Message -->
+    <section id="main-message-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+            <div class="bokeh-lights"></div>
+        </div>
+        <div class="message-card">
+            <div class="card-glow"></div>
+            <p class="romantic-message">
+                اجمل لحظات حياتي كانت اللحظه الاتعرفت عليك فيها بغض النظر عن الطريقه الاتعرفنا بيها والحاجه الجمعتنا ح تفضلي اجمل واسعد لحظات حياتي الحصلت اليوم العرفتك فيهو كانت بداية عمر جديد لي وكل دقيقه كنت بتكلم فيها كنت بتمنى دايما انو ربنا يديما هي ممكن تكون دقيقه بس بتعوض عن سنين كتيره راحت وانا بتمنى ليك دايما تكوني مبسوطه في حياتك وناجحه ومتفوقه واهلك فرحانين بيك وربنا مايحرمك منهم وما يحرمهم منك ويديم المحبه بينكم يا رب وبتمنى زي ما كنتي سبب جزء كبير من سعادتي وفرحتي اكون سبب جزء حتى لو بسيط بس من سعادتك وقدر ال الله يديني ليهو اقدمه ليك يا ست الكل في الكل❤️💕
+            </p>
+            <button id="message-next-btn" class="cinematic-btn next" style="margin-top: 40px;">
+                <span class="btn-text">NEXT</span>
+            </button>
+        </div>
+    </section>
 
-function startMusic() {
-    if (backgroundMusic && backgroundMusic.paused) {
-        backgroundMusic.play().catch(e => console.log('Music error:', e));
-    }
-}
+    <!-- Game Intro -->
+    <section id="game-intro-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="message-card">
+            <h2 class="game-intro-text">
+                اذا انتي فزتي علي في اللعبه تختاري واحد من الصناديق<br>
+                واذا انا فزت حيظهر ليك صندوقي
+            </h2>
+        </div>
+    </section>
 
-function stopMusic() {
-    if (backgroundMusic && !backgroundMusic.paused) {
-        backgroundMusic.pause();
-    }
-}
+    <!-- Game Screen -->
+    <section id="game-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="game-stage">
+            <h2 class="game-title">اختاري بحكمة</h2>
+            <div class="choices-grid">
+                <div class="choice-card" data-choice="rock">
+                    <div class="choice-icon">✊</div>
+                    <div class="choice-label">حجر</div>
+                </div>
+                <div class="choice-card" data-choice="paper">
+                    <div class="choice-icon">✋</div>
+                    <div class="choice-label">ورقة</div>
+                </div>
+                <div class="choice-card" data-choice="scissors">
+                    <div class="choice-icon">✌️</div>
+                    <div class="choice-label">مقص</div>
+                </div>
+            </div>
+            <div id="game-result" class="game-result"></div>
+        </div>
+    </section>
 
-// ========== SCENE TRANSITION ==========
-function transitionScene(from, to) {
-    const fromScene = document.getElementById(from);
-    const toScene = document.getElementById(to);
-    
-    if (typeof gsap !== 'undefined') {
-        gsap.to(fromScene, {
-            opacity: 0,
-            duration: 0.8,
-            onComplete: function() {
-                fromScene.classList.remove('active');
-                toScene.classList.add('active');
-                gsap.fromTo(toScene, 
-                    { opacity: 0 },
-                    { opacity: 1, duration: 0.8 }
-                );
-            }
-        });
-    } else {
-        fromScene.classList.remove('active');
-        toScene.classList.add('active');
-    }
-}
+    <!-- Player Win - Choose Box -->
+    <section id="choose-box-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+        </div>
+        <div class="boxes-container">
+            <h2 class="boxes-title">اختاري صندوقك! 🎁</h2>
+            <div class="gift-boxes">
+                <div class="gift-box" data-box="1">🎁</div>
+                <div class="gift-box" data-box="2">🎁</div>
+                <div class="gift-box" data-box="3">🎁</div>
+            </div>
+        </div>
+        <div id="video-container" class="video-container">
+            <video id="gift-video" class="gift-video" controls></video>
+        </div>
+    </section>
 
-// ========== PARTICLES ==========
-function createFloatingParticles() {
-    const container = document.querySelector('.floating-particles');
-    if (!container) return;
-    
-    for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
-            background: rgba(212, 175, 55, 0.6);
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 10 + 5}s ease-in-out infinite;
-            animation-delay: ${Math.random() * 5}s;
-        `;
-        container.appendChild(p);
-    }
-}
+    <!-- Player Lose Message -->
+    <section id="lose-message-screen" class="scene">
+        <div class="romantic-atmosphere dark"></div>
+        <div class="message-card">
+            <h2 class="dramatic-text">كده كده كان حيظهر ليك صندوقي</h2>
+        </div>
+    </section>
 
-function createPetals() {
-    document.querySelectorAll('.petals-container').forEach(container => {
-        container.innerHTML = '';
-        const petals = ['🌹', '🌺', '🌸', '💐', '🌷'];
-        
-        for (let i = 0; i < 25; i++) {
-            const p = document.createElement('div');
-            p.textContent = petals[Math.floor(Math.random() * petals.length)];
-            p.style.cssText = `
-                position: absolute;
-                font-size: ${Math.random() * 25 + 15}px;
-                left: ${Math.random() * 100}%;
-                top: -50px;
-                opacity: 0.7;
-                animation: petalFall ${Math.random() * 5 + 4}s linear infinite;
-                animation-delay: ${Math.random() * 5}s;
-            `;
-            container.appendChild(p);
-        }
-    });
-}
+    <!-- Force My Box Message -->
+    <section id="force-box-message" class="scene">
+        <div class="romantic-atmosphere dark"></div>
+        <div class="message-card">
+            <h2 class="dramatic-text">برضو حيظهر ليك الصندوق بتاعي غصبا عنك🙂</h2>
+        </div>
+    </section>
 
-// ========== BUTTONS SCREEN ==========
-function initButtons() {
-    const nextBtn = document.getElementById('next-btn');
-    const exitBtn = document.getElementById('exit-btn');
-    
-    nextBtn.onclick = function() {
-        startMusic();
-        transitionScene('buttons-screen', 'warning-screen');
-        
-        setTimeout(function() {
-            transitionScene('warning-screen', 'main-message-screen');
-            createPetals();
-            initMessageNext();
-        }, 3000);
-    };
-    
-    exitBtn.onclick = function() {
-        if (exitAttempts < 3) {
-            showWarning(exitAttempts);
-            exitAttempts++;
-            
-            if (exitAttempts === 3) {
-                setTimeout(replaceExitWithNext, 3000);
-            }
-        }
-    };
-}
+    <!-- My Box Screen -->
+    <section id="my-box-screen" class="scene">
+        <div class="romantic-atmosphere"></div>
+        <div class="my-box-container">
+            <div id="special-box" class="special-box">📦</div>
+        </div>
+    </section>
 
-function showWarning(index) {
-    const overlay = document.getElementById('warning-overlay');
-    const content = overlay.querySelector('.warning-content');
-    const msg = CONFIG.warningMessages[index];
-    
-    content.innerHTML = `
-        <img src="${msg.image}" class="warning-img" onerror="this.style.display='none'">
-        <div class="warning-text">${msg.text}</div>
-    `;
-    
-    overlay.classList.add('show');
-    setTimeout(() => overlay.classList.remove('show'), 3000);
-}
+    <!-- Proposal Screen -->
+    <section id="proposal-screen" class="scene">
+        <div class="romantic-atmosphere">
+            <div class="petals-container"></div>
+            <div class="bokeh-lights"></div>
+        </div>
+        <div class="proposal-container">
+            <img id="proposal-character" class="proposal-character" src="" alt="💍">
+            <h2 class="proposal-text">فطومه هل انتي موافقه بكامل قواك العقليه<br>بي اني اكون شريكك؟🤍</h2>
+            <div class="proposal-buttons">
+                <button id="yes-btn" class="proposal-btn yes">موافقة</button>
+                <button id="no-btn" class="proposal-btn no">ما موافقة</button>
+            </div>
+        </div>
+        <div id="video-overlay" class="video-overlay">
+            <video id="no-video" class="no-video" style="display:none;"></video>
+        </div>
+    </section>
 
-function replaceExitWithNext() {
-    const exitBtn = document.getElementById('exit-btn');
-    
-    if (typeof gsap !== 'undefined') {
-        gsap.to(exitBtn, {
-            scale: 0,
-            duration: 0.5,
-            onComplete: function() {
-                exitBtn.classList.remove('exit');
-                exitBtn.classList.add('next');
-                exitBtn.innerHTML = '<span class="btn-text">NEXT</span>';
-                exitBtn.onclick = function() {
-                    startMusic();
-                    transitionScene('buttons-screen', 'warning-screen');
-                    setTimeout(function() {
-                        transitionScene('warning-screen', 'main-message-screen');
-                        createPetals();
-                        initMessageNext();
-                    }, 3000);
-                };
-                gsap.to(exitBtn, { scale: 1, duration: 0.5 });
-            }
-        });
-    }
-}
+    <!-- Contact Choice -->
+    <section id="contact-screen" class="scene">
+        <div class="romantic-atmosphere"></div>
+        <div class="contact-container">
+            <h2 class="contact-title">اختاري التطبيق</h2>
+            <div class="contact-buttons">
+                <button id="whatsapp-btn" class="contact-btn whatsapp">
+                    <span class="contact-icon">📱</span>
+                    <span>WhatsApp</span>
+                </button>
+                <button id="telegram-btn" class="contact-btn telegram">
+                    <span class="contact-icon">✈️</span>
+                    <span>Telegram</span>
+                </button>
+            </div>
+        </div>
+    </section>
 
-// ========== MESSAGE NEXT ==========
-function initMessageNext() {
-    const btn = document.getElementById('message-next-btn');
-    if (btn) {
-        btn.onclick = function() {
-            transitionScene('main-message-screen', 'game-intro-screen');
-            
-            // Auto transition after 5 seconds
-            setTimeout(function() {
-                transitionScene('game-intro-screen', 'game-screen');
-                initGame();
-            }, 5000);
-        };
-    }
-}
-
-// ========== GAME ==========
-function initGame() {
-    createPetals();
-    
-    document.querySelectorAll('.choice-card').forEach(card => {
-        card.onclick = function() {
-            const choice = this.getAttribute('data-choice');
-            playGame(choice);
-        };
-    });
-}
-
-function playGame(playerChoice) {
-    let result;
-    
-    if (playerChoice === 'scissors') result = 'lose';
-    else if (playerChoice === 'rock') result = 'tie';
-    else if (playerChoice === 'paper') result = 'win';
-    
-    const resultDiv = document.getElementById('game-result');
-    const choices = { rock: 'حجر ✊', paper: 'ورقة ✋', scissors: 'مقص ✌️' };
-    
-    resultDiv.textContent = `اخترتي: ${choices[playerChoice]} | اخترت: ${choices.rock}`;
-    
-    setTimeout(function() {
-        if (result === 'win') {
-            transitionScene('game-screen', 'choose-box-screen');
-            initBoxChoice();
-        } else if (result === 'lose') {
-            transitionScene('game-screen', 'lose-message-screen');
-            setTimeout(function() {
-                transitionScene('lose-message-screen', 'my-box-screen');
-                initMyBox();
-            }, 3000);
-        } else {
-            resultDiv.textContent = 'تعادل! جربي مرة تانية';
-            setTimeout(() => resultDiv.textContent = '', 2000);
-        }
-    }, 2000);
-}
-
-// ========== BOX CHOICE ==========
-function initBoxChoice() {
-    document.querySelectorAll('.gift-box').forEach(box => {
-        box.onclick = function() {
-            openGiftBox(this);
-        };
-    });
-}
-
-function openGiftBox(boxElement) {
-    // Don't stop music - keep playing
-    
-    if (typeof gsap !== 'undefined') {
-        gsap.to(boxElement, {
-            scale: 0,
-            rotation: 360,
-            duration: 0.8,
-            onComplete: function() {
-                showVideo();
-            }
-        });
-    } else {
-        showVideo();
-    }
-}
-
-function showVideo() {
-    const container = document.getElementById('video-container');
-    const video = document.getElementById('gift-video');
-    
-    video.src = CONFIG.giftVideo;
-    video.muted = false; // Make sure video has sound
-    container.style.display = 'flex';
-    
-    // Lower background music volume during video
-    if (backgroundMusic) {
-        backgroundMusic.volume = 0.2;
-    }
-    
-    // Show close button
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'video-close-btn';
-    closeBtn.innerHTML = '✕';
-    closeBtn.onclick = function() {
-        video.pause();
-        container.style.display = 'none';
-        closeBtn.remove();
-        
-        // Restore music volume
-        if (backgroundMusic) {
-            backgroundMusic.volume = 0.7;
-        }
-        
-        transitionScene('choose-box-screen', 'force-box-message');
-        setTimeout(function() {
-            transitionScene('force-box-message', 'my-box-screen');
-            initMyBox();
-        }, 3000);
-    };
-    container.appendChild(closeBtn);
-    
-    if (typeof gsap !== 'undefined') {
-        gsap.fromTo(video,
-            { scale: 0.1, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 1.5, ease: 'back.out(1.7)' }
-        );
-    }
-    
-    video.play();
-    
-    video.onended = function() {
-        // Restore music volume
-        if (backgroundMusic) {
-            backgroundMusic.volume = 0.7;
-        }
-        
-        container.style.display = 'none';
-        closeBtn.remove();
-        transitionScene('choose-box-screen', 'force-box-message');
-        setTimeout(function() {
-            transitionScene('force-box-message', 'my-box-screen');
-            initMyBox();
-        }, 3000);
-    };
-}
-
-// ========== MY BOX ==========
-function initMyBox() {
-    const box = document.getElementById('special-box');
-    
-    box.onclick = function() {
-        explodeBox(box);
-    };
-}
-
-function explodeBox(box) {
-    // Light effect
-    box.style.filter = 'brightness(3)';
-    
-    setTimeout(function() {
-        if (typeof gsap !== 'undefined') {
-            gsap.to(box, {
-                scale: 0,
-                rotation: 720,
-                opacity: 0,
-                duration: 1.5,
-                ease: 'power2.in',
-                onComplete: function() {
-                    transitionScene('my-box-screen', 'proposal-screen');
-                    initProposal();
-                }
-            });
-        } else {
-            transitionScene('my-box-screen', 'proposal-screen');
-            initProposal();
-        }
-    }, 500);
-}
-
-// ========== PROPOSAL ==========
-function initProposal() {
-    // Set proposal image
-    const proposalImg = document.getElementById('proposal-character');
-    proposalImg.src = CONFIG.proposalImage;
-    
-    const yesBtn = document.getElementById('yes-btn');
-    const noBtn = document.getElementById('no-btn');
-    
-    yesBtn.onclick = function() {
-        transitionScene('proposal-screen', 'contact-screen');
-        initContact();
-    };
-    
-    noBtn.onclick = function() {
-        noAttempts++;
-        
-        if (noAttempts < 3) {
-            moveNoButton(noBtn);
-        } else {
-            hideNoButton(noBtn);
-        }
-    };
-}
-
-function moveNoButton(btn) {
-    const maxX = window.innerWidth - btn.offsetWidth - 50;
-    const maxY = window.innerHeight - btn.offsetHeight - 50;
-    
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
-    
-    if (typeof gsap !== 'undefined') {
-        gsap.to(btn, {
-            x: newX,
-            y: newY,
-            duration: 0.3,
-            ease: 'power2.out'
-        });
-    }
-}
-
-function hideNoButton(btn) {
-    if (typeof gsap !== 'undefined') {
-        gsap.to(btn, {
-            scale: 0,
-            opacity: 0,
-            duration: 0.5,
-            onComplete: function() {
-                showNoVideo();
-            }
-        });
-    } else {
-        btn.style.display = 'none';
-        showNoVideo();
-    }
-}
-
-function showNoVideo() {
-    const overlay = document.getElementById('video-overlay');
-    const video = document.getElementById('no-video');
-    
-    // Don't stop music - keep playing
-    
-    // Change video element to img for GIF
-    const gifImg = document.createElement('img');
-    gifImg.src = CONFIG.noGif;
-    gifImg.className = 'no-gif';
-    gifImg.style.maxWidth = '90%';
-    gifImg.style.maxHeight = '90%';
-    gifImg.style.borderRadius = '20px';
-    
-    // Hide video, show gif
-    video.style.display = 'none';
-    overlay.appendChild(gifImg);
-    overlay.style.display = 'flex';
-    
-    // Show close button
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'video-close-btn';
-    closeBtn.innerHTML = '✕';
-    closeBtn.onclick = function() {
-        overlay.style.display = 'none';
-        gifImg.remove();
-        closeBtn.remove();
-    };
-    overlay.appendChild(closeBtn);
-    
-    // Auto close after 5 seconds
-    setTimeout(function() {
-        if (overlay.style.display === 'flex') {
-            overlay.style.display = 'none';
-            gifImg.remove();
-            closeBtn.remove();
-        }
-    }, 5000);
-}
-
-// ========== CONTACT ==========
-function initContact() {
-    const whatsappBtn = document.getElementById('whatsapp-btn');
-    const telegramBtn = document.getElementById('telegram-btn');
-    
-    const message = encodeURIComponent('ايوا موافقة❤️');
-    
-    whatsappBtn.onclick = function() {
-        window.open(`https://wa.me/${CONFIG.phoneNumber}?text=${message}`, '_blank');
-    };
-    
-    telegramBtn.onclick = function() {
-        window.open(`https://t.me/${CONFIG.phoneNumber}?text=${message}`, '_blank');
-    };
-}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
